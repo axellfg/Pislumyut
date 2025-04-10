@@ -18,6 +18,7 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            padding: 0 10px;
         }
         header {
             background: none;
@@ -29,10 +30,9 @@
             font-size: 18px;
         }
         .slider {
-            width: 1349px;
-            height: 400px;
+            width: 100vw;
+            max-width: 100vw;
             overflow: hidden;
-            margin: 10px auto 0 auto;
             position: relative;
         }
         .slider-track {
@@ -43,13 +43,16 @@
         }
         .slide {
             min-width: 100vw;
-            height: 100%;
+            height: auto;
             flex-shrink: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         .slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            width: 100vw;
+            height: auto;
+            object-fit: contain;
         }
         nav {
             position: fixed;
@@ -63,23 +66,21 @@
             right: 20px;
             background: #fdd835;
             border: none;
-            border-radius: 0;
             width: 0;
             height: 0;
             font-size: 24px;
             color: #2e7d32;
             cursor: pointer;
-            margin-right: 5px;
-            z-index: 2000; /* Supaya selalu di atas menu */
+            z-index: 2000;
         }
         .menu-toggle::before {
-            content: '⋮'; /* Titik tiga default */
+            content: '\22EE';
             display: block;
             text-align: center;
             line-height: 40px;
         }
         .menu-toggle.open::before {
-            content: '✖'; /* Tanda silang saat menu terbuka */
+            content: '\2716';
         }
         .menu {
             position: fixed;
@@ -128,10 +129,13 @@
             background: #575429;
             color: #9ef8a3;
             text-align: center;
-            padding: 30px 50px;
+            padding: 30px 20px;
             font-size: 16px;
             font-weight: bold;
             margin-top: auto;
+            width: 100vw;
+            margin-left: -10px;
+            margin-right: -10px;
         }
         .logo-container {
             text-align: center;
@@ -183,7 +187,7 @@
         }
         .about-gallery {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
             padding: 30px 20px;
             justify-items: center;
@@ -198,9 +202,32 @@
         }
 
         .about-gallery .last-center {
-            grid-column: 2 / span 1; /* taruh di kolom tengah */
+            grid-column: span 1;
+            justify-self: center;
         }
-
+    @media (max-width: 768px) {
+        .about-gallery {
+            grid-template-columns: 1fr;
+        }
+        .logo {
+            width: 200px;
+            height: 200px;
+        }
+        .logo-top {
+            width: 40px;
+            height: 40px;
+        }
+        .judul-top {
+            font-size: 16px;
+        }
+        .description {
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+        .about-gallery .last-center {
+            grid-column: auto;
+        }
+    }
     </style>
 </head>
 <body>
@@ -223,7 +250,7 @@
     <section class="page active" id="home">
         <div class="logo-container">
             <img src="logo.png" alt="Logo Pislumyut" class="logo" style="margin-top: 40px;">
-        <div class="description" style="margin-bottom: -30px; margin-left: 400px; margin-right: 400px;">
+        <div class="description" style="margin-bottom: -30px; margin-left: auto; margin-right: auto; max-width: 90%;">
             <p><strong style="font-size: 30px; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">📣 HALOOO WARGA PETRA 2!!</strong></p>
             <br>
             <p>Kabar gembira nih!! Kriuk Manja x Es Goyang Lidah resmi open pre-order dan bisa kalian ambil pada Senin, 21 April 2025 yaa! Tenang aja, kita juga tetap menerima order di tempat kok!</p>
@@ -234,7 +261,7 @@
             <br>
             <p><strong style="font-size: 25px; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">🍌 Kriuk Manja</strong><br>Pisang goreng madu kriuk dengan topping saus coklat, susu kental manis, mentega gula yang meleleh di mulut! Manisnya pas, crunchy-nya dapett!! Dijamin nggak cukup satu!</p>
             <br>
-            <p><strong style="font-size: 25px; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">🪝 Es Goyang Lidah</strong><br>Es lumut mangga yang seger maksimal! Perpaduan jelly lumut mangga dan susu yang nyegerin yang siap menyegarkan harimu di tengah cuaca panas!!</p>
+            <p><strong style="font-size: 25px; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">🥭 Es Goyang Lidah</strong><br>Es lumut mangga yang seger maksimal! Perpaduan jelly lumut mangga dan susu yang nyegerin yang siap menyegarkan harimu di tengah cuaca panas!!</p>
             <br>
             <p><strong>Harga cuma 10k aja per porsi!<br>Harga KAKI LIMA, rasa BINTANG LIMA!!</strong></p>
             <br>
@@ -242,7 +269,7 @@
             <br>
             <p><strong>Yuk buruan order sebelum kehabisan!!</strong></p>
         </div>
-        <div class="slider" style="margin-top: 20px; margin-left: -18px; margin-bottom: -20px;">
+        <div class="slider" style="margin-top: 20px; margin-left: -28px; margin-bottom: -20px;">
             <div class="slider-track" id="sliderTrack">
                 <div class="slide"><img src="banner.png" alt="Slide 1"></div>
                 <div class="slide"><img src="axell.png" alt="Slide 2"></div>
@@ -304,7 +331,7 @@
     const toggleBtn = document.getElementById('menuToggle');
     
     menu.classList.remove('open');
-    toggleBtn.innerHTML = '&#8942;'; // Balikin ke titik tiga
+    toggleBtn.classList.remove('open');
     }
     
         // Slider utama (Home)
